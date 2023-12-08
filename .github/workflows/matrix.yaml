@@ -2,6 +2,7 @@ name: Matrix Demo
 on: push
 jobs:
   build:
+    continue-on-error: true #Continue on error over a job in matrix tells to execute even if one of the job fails in matrix
     strategy:
       matrix:
         node-version: [12,14,16]
