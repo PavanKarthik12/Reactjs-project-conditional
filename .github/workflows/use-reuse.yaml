@@ -82,6 +82,7 @@ jobs:
     steps:
       - name: print deploy output
         run: echo "${{ needs.deploy.outputs.result }}"
+        
   report:
     needs: [test,build,deploy,lint]
     if: failure()

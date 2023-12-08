@@ -10,14 +10,14 @@ on:
     outputs:
       result:
         description: The result of deployment operation
-        value: ${{ jobs.deploy.outputs.set-ouput }}
+        value: ${{ jobs.deploy.outputs.outcome }}
     #secrets:
     #  some-secret:
     #    required: false
 jobs:
   deploy:
     outputs:
-      set-output: ${{ steps.result.outputs.step-result }}
+      outcome: ${{ steps.set-result.outputs.step-result }}
     runs-on : ubuntu-latest
     steps:
       - name: Download Artifact
@@ -29,5 +29,5 @@ jobs:
       - name: Output Information
         run: echo "Deploying....!"
       - name: Set Result Output
-        id: result
+        id: set-result
         run: echo "::set-output name=step-result::success"
