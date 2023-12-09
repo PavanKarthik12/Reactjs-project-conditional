@@ -1,8 +1,5 @@
 name: Website Deployment
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
 jobs:
   lint:
@@ -40,7 +37,7 @@ jobs:
         id: test-code
         run: npm run test
       - name: Upload test report
-        if: failure() && steps.test-code.outcome =='failure' #failure() means it will get executed even if any of previous jobs fails so here we are executing upload artifacts even if the tests jobs fails because we need to see which test cases failed in actual
+        if: steps.test-code.outcome =='failure' #failure() means it will get executed even if any of previous jobs fails so here we are executing upload artifacts even if the tests jobs fails because we need to see which test cases failed in actual
         uses: actions/upload-artifact@v3
         with:
           name: test-report
